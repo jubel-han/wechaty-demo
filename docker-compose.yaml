@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  bot:
+    build: .
+    working_dir: /wechat-bot
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      # - "npm ls wecahty-puppet-padprod"
+      - "npm run serve"
+    environment:
+      - WECHATY_LOG=silly
+      - WECHATY_PORT=8080
+    volumes:
+      - notused:/wechat-bot/node_modules
+      - .:/wechat-bot:delegated
+    ports:
+      - "8080:8080"
+
+volumes:
+    notused:
